@@ -77,7 +77,4 @@ const TProgmemRGBPalette16 Ice_p FL_PROGMEM =
         Ice_Blue1, Ice_Blue1, Ice_Blue1, Ice_Blue1,
         Ice_Blue2, Ice_Blue2, Ice_Blue2, Ice_Blue3};
 
-extern const TProgmemRGBPalette16 *ActivePaletteList[];
-extern const uint8_t NUM_PALETTES;
-
 #endif // COLOR_PALETTES_H

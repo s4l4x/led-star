@@ -23,14 +23,4 @@
 // incandescent bulbs change color as they get dim down.
 #define COOL_LIKE_INCANDESCENT 1
 
-// Background color for 'unlit' pixels
-// Can be set to CRGB::Black if desired.
-// Example of dim incandescent fairy light background color
-// CRGB gBackgroundColor = CRGB(CRGB::FairyLight).nscale8_video(16);
-extern CRGB gBackgroundColor;
-
-// FIXME: Consider moving to color_palettes.h
-extern CRGBPalette16 gCurrentPalette;
-extern CRGBPalette16 gTargetPalette;
-
 #endif // PROGRAM_OPTIONS_H

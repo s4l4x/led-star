@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
+#include "global_defs.h"
 #include "led_config.h"
 #include "program_options.h"
 #include "utility_functions.h"

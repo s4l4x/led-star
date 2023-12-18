@@ -1,4 +1,5 @@
 #include "utility_functions.h"
+#include "global_defs.h"
 #include "color_palettes.h"
 
 // Advance to the next color palette in the list (defined in color_palettes.h).
