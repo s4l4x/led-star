@@ -16,15 +16,9 @@ CRGBSet ledSet(leds, NUM_LEDS); // leds set
 // palettes are used, and in what order.
 const TProgmemRGBPalette16 *ActivePaletteList[] = {
     &RetroC9_p,
-    &BlueWhite_p,
     &RainbowColors_p,
-    &FairyLight_p,
-    &RedGreenWhite_p,
     &PartyColors_p,
-    &RedWhite_p,
-    &Snow_p,
-    &Holly_p,
-    &Ice_p};
+};
 
 const uint8_t NUM_PALETTES = sizeof(ActivePaletteList) / sizeof(ActivePaletteList[0]);
 
@@ -44,7 +38,8 @@ CRGB computeOneTwinkle(uint32_t ms, uint8_t salt);
 void setup()
 {
   delay(3000);
-  FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS); // .setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS); //.setCorrection(TypicalLEDStrip);
+  FastLED.setBrightness(BRIGHTNESS);
   chooseNextColorPalette(gTargetPalette);
 }
 

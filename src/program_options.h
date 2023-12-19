@@ -7,7 +7,7 @@
 
 // 0 (NONE lit) to 8 (ALL lit at once).
 // Default is 5.
-#define TWINKLE_DENSITY 5
+#define TWINKLE_DENSITY 6
 
 // How often to change color palettes.
 #define SECONDS_PER_PALETTE 30
