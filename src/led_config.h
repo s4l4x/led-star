@@ -3,7 +3,7 @@
 
 #define NUM_LEDS 200
 #define DATA_PIN 1
-#define COLOR_ORDER GRB
+#define COLOR_ORDER RGB
 #define BRIGHTNESS 255
 
 #endif // LED_CONFIG_H

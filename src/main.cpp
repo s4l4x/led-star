@@ -3,60 +3,37 @@
 
 #include "global_defs.h"
 #include "led_config.h"
-#include "program_options.h"
 #include "utility_functions.h"
 #include "color_palettes.h"
 
-//----------------------------------------------------------------------------------
-// LED definitions
-CRGB leds[NUM_LEDS];            // leds array
-CRGBSet ledSet(leds, NUM_LEDS); // leds set
+CRGB leds[NUM_LEDS];
+CRGBSet ledSet(leds, NUM_LEDS);
 
-// Add or remove palette names from this list to control which color
-// palettes are used, and in what order.
-const TProgmemRGBPalette16 *ActivePaletteList[] = {
-    &RetroC9_p,
-    &RainbowColors_p,
-    &PartyColors_p,
-};
-
-const uint8_t NUM_PALETTES = sizeof(ActivePaletteList) / sizeof(ActivePaletteList[0]);
-
-CRGBPalette16 gTargetPalette;
 CRGBPalette16 gCurrentPalette;
-CRGB gBackgroundColor = CRGB::Black;
 
-//----------------------------------------------------------------------------------
-// Function Declarations
-void chooseNextColorPalette(CRGBPalette16 &pal);
-void drawTwinkles(CRGBSet &L);
-uint8_t attackDecayWave8(uint8_t i);
-void coolLikeIncandescent(CRGB &c, uint8_t phase);
-CRGB computeOneTwinkle(uint32_t ms, uint8_t salt);
+const uint8_t SECTION_LENGTHS[NUM_ROWS][SECTIONS_PER_ROW] = {
+    {7, 9, 9, 10, 9, 8, 8},
+    {10, 11, 10, 9, 9, 11, 8},
+    {7, 11, 9, 12, 11, 12, 10}};
 
-//----------------------------------------------------------------------------------
 void setup()
 {
   delay(3000);
-  FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS); //.setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2812, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
   FastLED.setBrightness(BRIGHTNESS);
-  chooseNextColorPalette(gTargetPalette);
+  // gCurrentPalette = RainbowColors_p;
+  gCurrentPalette = CustomRainbowColors_p;
 }
 
-//----------------------------------------------------------------------------------
 void loop()
 {
-  EVERY_N_SECONDS(SECONDS_PER_PALETTE)
+  // Set the rainbow colors once
+  static bool initialized = false;
+  if (!initialized)
   {
-    chooseNextColorPalette(gTargetPalette);
+    setRainbowSections(ledSet, CustomRainbowColors_p);
+    initialized = true;
   }
-
-  EVERY_N_MILLISECONDS(10)
-  {
-    nblendPaletteTowardPalette(gCurrentPalette, gTargetPalette, 12);
-  }
-
-  drawTwinkles(ledSet);
 
   FastLED.show();
 }
