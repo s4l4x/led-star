@@ -1,3 +1,4 @@
+// In main.cpp
 #include <Arduino.h>
 #include <FastLED.h>
 
@@ -8,9 +9,9 @@
 
 CRGB leds[NUM_LEDS];
 CRGBSet ledSet(leds, NUM_LEDS);
+uint8_t gCurrentMode = HALLOWEEN; // Set initial mode
 
-CRGBPalette16 gCurrentPalette;
-
+// The actual section lengths array
 const uint8_t SECTION_LENGTHS[NUM_ROWS][SECTIONS_PER_ROW] = {
     {7, 9, 9, 10, 9, 8, 8},
     {10, 11, 10, 9, 9, 11, 8},
@@ -21,19 +22,29 @@ void setup()
   delay(3000);
   FastLED.addLeds<WS2812, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS);
   FastLED.setBrightness(BRIGHTNESS);
-  // gCurrentPalette = RainbowColors_p;
-  gCurrentPalette = CustomRainbowColors_p;
+
+  // Initialize based on mode
+  if (gCurrentMode == PRIDE)
+  {
+    setPrideMode(ledSet, CustomRainbowColors_p);
+  }
+  else if (gCurrentMode == HALLOWEEN)
+  {
+    setHalloweenMode(ledSet);
+  }
 }
 
 void loop()
 {
-  // Set the rainbow colors once
-  static bool initialized = false;
-  if (!initialized)
+  if (gCurrentMode == PRIDE)
   {
-    setRainbowSections(ledSet, CustomRainbowColors_p);
-    initialized = true;
+    // Pride mode is static, no updates needed
+    FastLED.show();
   }
-
-  FastLED.show();
+  else if (gCurrentMode == HALLOWEEN)
+  {
+    updateHalloweenSparkles(ledSet);
+    FastLED.show();
+  }
+  FastLED.delay(10);
 }
