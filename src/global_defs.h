@@ -10,7 +10,8 @@
 enum LightMode
 {
   PRIDE = 0,
-  HALLOWEEN = 1
+  HALLOWEEN = 1,
+  WITCHY = 2
 };
 
 extern const uint8_t SECTION_LENGTHS[NUM_ROWS][SECTIONS_PER_ROW];
