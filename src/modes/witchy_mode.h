@@ -10,29 +10,30 @@ void updateWitchyMode(CRGBSet &L);
 // Constants specific to witchy mode
 namespace WitchyConstants
 {
-  // Base colors (darker)
-  constexpr uint8_t BASE_PURPLE_R = 2; // Reduced from 4
-  constexpr uint8_t BASE_PURPLE_G = 0;
-  constexpr uint8_t BASE_PURPLE_B = 6; // Reduced from 8
-
   // Timing and intervals
-  constexpr uint16_t MAGIC_INTERVAL = 150;
-  constexpr uint8_t FADE_RATE = 30; // Increased from 20 for faster fade
+  constexpr uint16_t MAGIC_INTERVAL = 2;
+  constexpr uint8_t FADE_RATE = 60;
 
   // Blotch configuration
-  constexpr uint8_t MAX_BLOTCHES = 5;
-  constexpr uint8_t BLOTCH_RADIUS = 10;
-  constexpr uint8_t MAX_BLOTCH_LIFE = 100;
-  constexpr uint8_t NEW_BLOTCH_CHANCE = 15; // Reduced from 20
+  constexpr uint8_t MAX_BLOTCHES = 5; // Increased for more activity
+  constexpr uint8_t BLOTCH_RADIUS = 5;
+  constexpr uint8_t MAX_BLOTCH_LIFE = 80;
+  constexpr uint8_t NEW_BLOTCH_CHANCE = 25; // Increased for more activity
+
+  // Color intensities
+  constexpr float DARK_PURPLE_INTENSITY = 0.4;
+  constexpr float LIGHT_PURPLE_INTENSITY = 0.2; // Brighter for light purple
+  constexpr float GREEN_INTENSITY = 0.4;
 
   // Magic surge configuration
-  constexpr uint8_t SURGE_CHANCE = 3;       // Reduced from 5
-  constexpr uint8_t SURGE_PURPLE_MIN = 64;  // Reduced from 128
-  constexpr uint8_t SURGE_PURPLE_MAX = 180; // Reduced from 255
+  constexpr uint8_t SURGE_CHANCE = 10;
+  constexpr uint8_t SURGE_DARK_PURPLE_MIN = 40;
+  constexpr uint8_t SURGE_DARK_PURPLE_MAX = 150;
+  constexpr uint8_t SURGE_LIGHT_PURPLE_MIN = 100; // Brighter minimum for light purple
+  constexpr uint8_t SURGE_LIGHT_PURPLE_MAX = 200; // Brighter maximum for light purple
 
-  // Color mixing
-  constexpr float PURPLE_INTENSITY = 0.3; // Reduced from 0.5
-  constexpr float GREEN_INTENSITY = 0.25; // Reduced from 0.4
+  // Dark sections
+  constexpr uint8_t DARK_SECTION_CHANCE = 5;
 }
 
 #endif // WITCHY_MODE_H
